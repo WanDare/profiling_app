@@ -30,6 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^4.6.6
+  google_fonts: ^4.0.3
+  carousel_slider: ^4.2.1
+  lottie: ^2.3.2
+  counter_button: ^1.0.1
+  google_nav_bar: ^5.0.6
+  line_icons: ^2.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
