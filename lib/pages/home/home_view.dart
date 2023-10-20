@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:pizza_food/xcore.dart';
 import 'package:lottie/lottie.dart';
-import 'package:profiling_app/core/styles/size.dart';
+import 'package:profiling_app/core/styles/padding.dart';
+import 'package:profiling_app/core/styles/radius.dart';
 import 'package:profiling_app/pages/home/home_controller.dart';
 import 'package:profiling_app/pages/home/home_widget.dart';
 import 'package:profiling_app/pages/pages_controller.dart';
@@ -88,11 +89,11 @@ class HomeView extends GetView<HomeController> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            "Popular",
+                            "Login",
                             style: GoogleFonts.roboto(
                               fontSize: 24,
                               color: Colors.black54,
@@ -110,45 +111,14 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                             child: Text(
-                              "View All",
+                              "Sign Up",
                               style: GoogleFonts.roboto(
-                                color: Colors.grey,
+                                color: Colors.red,
                                 fontSize: 12.0,
                               ),
                             ),
                           ),
                         ],
-                      ),
-                      SizedBox(height: Get.height * 0.01),
-                      Expanded(
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.65,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemCount: controller.listPizza.length <= 4
-                              ? controller.listPizza.length
-                              : controller.listPizza.length.clamp(6, 6),
-                          itemBuilder: (context, index) {
-                            final pizza = controller.listPizza[index];
-                            return InkWell(
-                              borderRadius: BorderRadius.circular(kRadius * 2),
-                              child: PizzaWidget(
-                                name: pizza.name,
-                                price: pizza.price,
-                                star: pizza.star,
-                                image: pizza.image,
-                              ),
-                              onTap: () {
-                                Get.toNamed(PageRouter.detail(pizza.id));
-                              },
-                            );
-                          },
-                        ),
                       ),
                     ],
                   ),
