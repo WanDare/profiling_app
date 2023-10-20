@@ -17,20 +17,9 @@ class AuthenticateView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: () {
-                  Get.toNamed(PageRouter.home);
-                },
+                onPressed: () {},
                 icon: const Icon(
                   Icons.facebook,
-                  color: Colors.black,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  Get.toNamed(PageRouter.home);
-                },
-                icon: const Icon(
-                  Icons.menu,
                   color: Colors.black,
                 ),
               ),
@@ -43,18 +32,75 @@ class AuthenticateView extends StatelessWidget {
           children: [
             Image.network(
                 "https://cdn.logojoy.com/wp-content/uploads/20220503151426/square-logo-outline-container.png"),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Login",
-                  style:
-                      TextStyle(fontSize: kFont, fontWeight: FontWeight.bold),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(PageRouter.home);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kRadius * 2),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                Text(
-                  "Sign Up",
-                  style:
-                      TextStyle(fontSize: kFont, fontWeight: FontWeight.bold),
+                SizedBox(
+                  height: kSpace,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kRadius * 2),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Sign Up",
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             )
