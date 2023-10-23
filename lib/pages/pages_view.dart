@@ -6,6 +6,7 @@ import 'package:profiling_app/pages/authenticate/authenticate_view.dart';
 import 'package:profiling_app/pages/home/home_controller.dart';
 // import 'package:pizza_food/xcore.dart';
 import 'package:profiling_app/pages/pages_controller.dart';
+import 'package:profiling_app/pages/profile/profile_view.dart';
 
 import 'home/home_view.dart';
 
@@ -25,9 +26,9 @@ class PageView extends GetView<PagesController> {
           index: controller.selectedIndex.value,
           children: const <Widget>[
             HomeView(),
+            ProfileView(),
             // CartView(),
             // SearchView(),
-            // ProfileView(),
           ],
         ),
       ),

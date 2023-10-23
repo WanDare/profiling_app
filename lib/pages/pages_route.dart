@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:profiling_app/pages/authenticate/authenticate_view.dart';
 import 'package:profiling_app/pages/home/home_view.dart';
 import 'package:profiling_app/pages/pages_view.dart';
+import 'package:profiling_app/pages/profile/profile_view.dart';
 import 'package:profiling_app/splash_screen.dart';
 
 class PageRouter {
@@ -24,17 +25,24 @@ class PageRouter {
     GetPage(
       name: page,
       page: () => const PageView(),
-      transition: Transition.circularReveal,
+      transition: Transition.fade,
     ),
     GetPage(
       name: authenticate,
       page: () => const AuthenticateView(),
+      transition: Transition.cupertinoDialog,
     ),
     GetPage(
-        name: show,
-        page: () => const HomeView(),
-        transition: Transition.native,
-        transitionDuration: const Duration(milliseconds: 500)),
+      name: profile,
+      page: () => const ProfileView(),
+      transition: Transition.fade,
+    ),
+    GetPage(
+      name: show,
+      page: () => const HomeView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
     // GetPage(
     //     name: detail(':id'),
     //     page: () => const DetailView(),
