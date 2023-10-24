@@ -1,91 +1,60 @@
-import 'package:get/get.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:profiling_app/pages/authenticate/authenticate_view.dart';
-import 'package:profiling_app/pages/home/home_controller.dart';
-// import 'package:pizza_food/xcore.dart';
-import 'package:profiling_app/pages/pages_controller.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:profiling_app/pages/chekin/chekin_view.dart';
+import 'package:profiling_app/pages/home/home_view.dart';
 import 'package:profiling_app/pages/profile/profile_view.dart';
+import 'pages_controller.dart';
 
-import 'home/home_view.dart';
+class PagesView extends GetView<GetxController> {
+  const PagesView({super.key});
 
-class PageView extends GetView<PagesController> {
-  const PageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.put(PagesController());
+    final controller = Get.put(PagesController());
     return Scaffold(
-      key: PagesController.scaffoldKey,
-      // drawer: const SidebarWidget(
-      //   profile:
-      //       'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      // ),
-      body: Obx(
-        () => IndexedStack(
-          index: controller.selectedIndex.value,
-          children: const <Widget>[
-            HomeView(),
-            ProfileView(),
-            // CartView(),
-            // SearchView(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Obx(() => Visibility(
-            visible: HomeController.isLoading.isTrue,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 20,
-                    color: Colors.black.withOpacity(.1),
-                  )
-                ],
+      body: Obx(() {
+        final currentPage = controller.currentIndex.value;
+
+        return currentPage == 0
+            ? const HomeView()
+            : currentPage == 1
+                ? const ChekinView()
+                : currentPage == 2
+                    ? const SizedBox()
+                    : const ProfileView();
+      }),
+      bottomNavigationBar: Obx(() {
+        return BottomNavigationBar(
+            backgroundColor: const Color.fromARGB(255, 249, 222, 215),
+            iconSize: 18,
+            selectedIconTheme: const IconThemeData(size: 22),
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.black,
+            selectedFontSize: 16,
+            unselectedFontSize: 14,
+            currentIndex: controller.currentIndex.value,
+            onTap: (i) {
+              if (i != controller.currentIndex.value) {
+                HapticFeedback.selectionClick();
+              }
+              controller.currentIndex.value = i;
+            },
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'LetMeIn',
               ),
-              child: SafeArea(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-                  child: GNav(
-                    rippleColor: Colors.grey[300]!,
-                    hoverColor: Colors.grey[100]!,
-                    gap: 8,
-                    activeColor: Colors.black,
-                    iconSize: 24,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 12),
-                    duration: const Duration(milliseconds: 400),
-                    tabBackgroundColor: Colors.grey[100]!,
-                    color: Colors.black,
-                    tabs: const <GButton>[
-                      GButton(
-                        icon: LineIcons.home,
-                        text: 'Home',
-                      ),
-                      GButton(
-                        icon: LineIcons.shoppingBasket,
-                        text: 'Cart',
-                      ),
-                      GButton(
-                        icon: LineIcons.search,
-                        text: 'Search',
-                      ),
-                      GButton(
-                        icon: LineIcons.user,
-                        text: 'Profile',
-                      ),
-                    ],
-                    selectedIndex: controller.selectedIndex.value,
-                    onTabChange: (index) {
-                      controller.selectedIndex.value = index;
-                    },
-                  ),
-                ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.install_desktop_sharp),
+                label: 'ChekIn',
               ),
-            ),
-          )),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profile',
+              ),
+            ]);
+      }),
     );
   }
 }

@@ -9,22 +9,13 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_rounded,
-                  color: Colors.black,
-                ),
-              ),
-            ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_rounded,
+            color: Colors.black,
           ),
-        ],
+          onPressed: () => Get.back(),
+        ),
       ),
       body: Center(
         child: AnimatedPositionedExample(),
