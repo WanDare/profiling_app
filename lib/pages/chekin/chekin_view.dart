@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:profiling_app/pages/home/Calendar_widget.dart';
 
 class ChekinView extends StatelessWidget {
   const ChekinView({super.key});
@@ -16,6 +17,7 @@ class ChekinView extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
       ),
+      body: CalendarWidget(),
     );
   }
 }

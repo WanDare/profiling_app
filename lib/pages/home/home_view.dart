@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calendar_week/flutter_calendar_week.dart';
 import 'package:get/get.dart';
 import 'package:profiling_app/core/styles/size.dart';
+import 'package:profiling_app/pages/home/Calendar_widget.dart';
+import 'package:profiling_app/pages/profile/profile_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -13,14 +16,14 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 5, 32),
+      backgroundColor: Color.fromARGB(255, 4, 8, 53),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             pinned: false,
             snap: false,
             floating: false,
-            expandedHeight: 300.0,
+            expandedHeight: 150.0,
             flexibleSpace: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -30,10 +33,10 @@ class _HomeViewState extends State<HomeView> {
               ),
               child: const FlexibleSpaceBar(
                 title: Text(
-                  'Khmer Calendar',
+                  'ChekIn Calendar',
                   style: TextStyle(color: Colors.white),
                 ),
-                titlePadding: EdgeInsets.only(left: 35, bottom: kPadding * 24),
+                titlePadding: EdgeInsets.only(left: 35),
               ),
             ),
             leading: Padding(
@@ -47,27 +50,93 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 2.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.teal[100 * (index % 9)],
-                  child: Text(
-                    'Grid Item $index',
-                    style: TextStyle(color: Colors.white),
+          SliverToBoxAdapter(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CalendarWeek(
+                  backgroundColor: Colors.transparent,
+                  // controller: _controller,
+                  height: 100,
+                  showMonth: false,
+                  minDate: DateTime.now().add(
+                    Duration(days: -365),
                   ),
-                );
-              },
-              childCount: 30,
+                  maxDate: DateTime.now().add(
+                    Duration(days: 365),
+                  ),
+                  // onDatePressed: (DateTime datetime) {
+                  //   // Do something
+                  //   setState(() {});
+                  // },
+                  // onDateLongPressed: (DateTime datetime) {
+                  //   // Do something
+                  // },
+                  // onWeekChanged: () {
+                  //   // Do something
+                  // },
+                  // monthViewBuilder: (DateTime time) => Align(
+                  //   alignment: FractionalOffset.center,
+                  //   child: Container(
+                  //       // margin: const EdgeInsets.symmetric(vertical: 4),
+                  //       ),
+                  // ),
+                  decorations: [
+                    DecorationItem(
+                      decorationAlignment: FractionalOffset.bottomRight,
+                      date: DateTime.now(),
+                      decoration: const Icon(
+                        Icons.check_circle,
+                        color: Colors.white54,
+                      ),
+                    ),
+
+                    // DecorationItem(
+                    //   date: DateTime.now().add(Duration(days: 3)),
+                    //   decoration: Text(
+                    //     'Holiday',
+                    //     style: TextStyle(
+                    //       color: Colors.brown,
+                    //       fontWeight: FontWeight.w600,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
             ),
           ),
+          SliverGrid.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+            ),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  // Navigate to another page when a grid item is tapped
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileView(),
+                    ),
+                  );
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                      15.0), // Adjust the radius as needed
+                  child: Container(
+                    color: Colors.white,
+                    height: Get.height * 0.10,
+                    width: Get.width * 0.4,
+                  ),
+                ),
+              );
+            },
+            itemCount: 10,
+          ),
+
           // SliverList(
           //   delegate: SliverChildBuilderDelegate(
           //     (BuildContext context, int index) {
@@ -88,7 +157,6 @@ class _HomeViewState extends State<HomeView> {
           // ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(),
     );
   }
 }

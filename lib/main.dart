@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.black),
         )),
-        scaffoldBackgroundColor: Colors.lightBlueAccent,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 4, 8, 53),
       ),
       initialRoute: PageRouter.splashScreen,
       getPages: PageRouter.pages,

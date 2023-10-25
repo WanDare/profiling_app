@@ -26,11 +26,11 @@ class PagesView extends GetView<GetxController> {
       }),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
-            backgroundColor: const Color.fromARGB(255, 249, 222, 215),
+            backgroundColor: const Color.fromARGB(255, 4, 8, 53),
             iconSize: 18,
             selectedIconTheme: const IconThemeData(size: 22),
-            selectedItemColor: Colors.blue,
-            unselectedItemColor: Colors.black,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white38,
             selectedFontSize: 16,
             unselectedFontSize: 14,
             currentIndex: controller.currentIndex.value,
@@ -43,14 +43,14 @@ class PagesView extends GetView<GetxController> {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                label: 'LetMeIn',
+                label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.install_desktop_sharp),
+                icon: Icon(Icons.check_box_outlined),
                 label: 'ChekIn',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person),
+                icon: Icon(Icons.person_outline),
                 label: 'Profile',
               ),
             ]);
