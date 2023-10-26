@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
       ),
-      body: Center(
+      body: const Center(
         child: AnimatedPositionedExample(),
       ),
     );

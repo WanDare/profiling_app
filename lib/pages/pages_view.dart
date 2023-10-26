@@ -21,39 +21,46 @@ class PagesView extends GetView<GetxController> {
             : currentPage == 1
                 ? const ChekinView()
                 : currentPage == 2
-                    ? const SizedBox()
-                    : const ProfileView();
+                    ? const ProfileView()
+                    : const SizedBox();
       }),
       bottomNavigationBar: Obx(() {
-        return BottomNavigationBar(
-            backgroundColor: const Color.fromARGB(255, 4, 8, 53),
-            iconSize: 18,
-            selectedIconTheme: const IconThemeData(size: 22),
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white38,
-            selectedFontSize: 16,
-            unselectedFontSize: 14,
-            currentIndex: controller.currentIndex.value,
-            onTap: (i) {
-              if (i != controller.currentIndex.value) {
-                HapticFeedback.selectionClick();
-              }
-              controller.currentIndex.value = i;
-            },
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.check_box_outlined),
-                label: 'ChekIn',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                label: 'Profile',
-              ),
-            ]);
+        return Padding(
+          padding: const EdgeInsets.all(15),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: BottomNavigationBar(
+              backgroundColor: Colors.orange,
+              iconSize: 18,
+              selectedIconTheme: const IconThemeData(size: 22),
+              selectedItemColor: const Color.fromARGB(255, 4, 8, 53),
+              unselectedItemColor: Colors.white,
+              selectedFontSize: 16,
+              unselectedFontSize: 14,
+              currentIndex: controller.currentIndex.value,
+              onTap: (i) {
+                if (i != controller.currentIndex.value) {
+                  HapticFeedback.selectionClick();
+                }
+                controller.currentIndex.value = i;
+              },
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.chat_rounded),
+                  label: 'Chat',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.badge_rounded),
+                  label: 'Profile',
+                ),
+              ],
+            ),
+          ),
+        );
       }),
     );
   }
