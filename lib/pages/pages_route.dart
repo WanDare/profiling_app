@@ -24,7 +24,7 @@ class PageRouter {
     GetPage(
       name: homeScreen,
       page: () => const PagesView(),
-      transition: Transition.fade,
+      transition: Transition.rightToLeft,
     ),
     GetPage(
       name: authenticate,
