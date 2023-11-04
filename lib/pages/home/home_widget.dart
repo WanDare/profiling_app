@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:profiling_app/pages/pages_route.dart';
 import 'home_controller.dart';
 import 'package:profiling_app/core/styles/size.dart';
 import 'package:profiling_app/pages/profile/profile_view.dart';
@@ -24,12 +25,7 @@ class ItemWidget extends GetView<AttendanceController> {
   Widget buildCustomWidget(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ProfileView(),
-          ),
-        );
+        Get.toNamed(PageRouter.profile);
       },
       child: ClipRRect(
         child: Container(
@@ -46,7 +42,7 @@ class ItemWidget extends GetView<AttendanceController> {
                 Icon(
                   icons,
                   color: Colors.orange,
-                  size: 50,
+                  size: 60,
                 ),
                 Text(
                   title,

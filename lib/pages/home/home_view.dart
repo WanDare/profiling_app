@@ -40,11 +40,12 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             leading: Padding(
-              padding: const EdgeInsets.only(left: 25),
+              padding: const EdgeInsets.only(left: kPadding * 42),
               child: IconButton(
                 icon: const Icon(
-                  Icons.menu,
+                  Icons.circle_notifications_rounded,
                   color: Colors.white,
+                  size: kPadding * 4,
                 ),
                 onPressed: () => Get.back(),
               ),
@@ -78,20 +79,30 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     child: Container(
-                      height: 80,
-                      color: Colors.white38,
+                      height: double.infinity,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white38,
+                            Color.fromARGB(255, 4, 8, 53),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.qr_code_rounded,
                             color: Colors.orange,
+                            size: kPadding * 5,
                           ),
                           Text(
                             'My CheckMe Card',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

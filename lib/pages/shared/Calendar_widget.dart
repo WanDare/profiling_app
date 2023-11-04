@@ -12,22 +12,26 @@ class CalendarWeeks extends StatelessWidget {
       backgroundColor: Colors.transparent,
       height: 100,
       showMonth: false,
+      todayDateStyle: const TextStyle(
+        color: Colors.white,
+      ),
+      todayBackgroundColor: Colors.white12,
       minDate: DateTime.now().add(
         const Duration(days: -365),
       ),
       maxDate: DateTime.now().add(
         const Duration(days: 365),
       ),
-      decorations: [
-        DecorationItem(
-          decorationAlignment: FractionalOffset.bottomRight,
-          date: DateTime.now(),
-          decoration: const Icon(
-            Icons.check_circle,
-            color: Colors.white54,
-          ),
-        ),
-      ],
+      // decorations: [
+      //   DecorationItem(
+      //     decorationAlignment: FractionalOffset.bottomRight,
+      //     date: DateTime.now(),
+      //     decoration: const Icon(
+      //       Icons.check,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ],
     );
   }
 }

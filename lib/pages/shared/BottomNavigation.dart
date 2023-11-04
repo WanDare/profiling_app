@@ -21,7 +21,7 @@ class _BottomNavigationBarExampleState
       style: optionStyle,
     ),
     Text(
-      'Card',
+      'ScanQr',
       style: optionStyle,
     ),
     Text(
@@ -49,8 +49,8 @@ class _BottomNavigationBarExampleState
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.install_desktop_sharp),
-            label: 'ChekIn',
+            icon: Icon(Icons.qr_code_scanner),
+            label: 'ScanQr',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:profiling_app/pages/chekin/chekin_view.dart';
 import 'package:profiling_app/pages/home/home_view.dart';
 import 'package:profiling_app/pages/profile/profile_view.dart';
+import 'package:profiling_app/pages/scan_qr/scan_qr_view.dart';
 import 'pages_controller.dart';
 
 class PagesView extends GetView<GetxController> {
@@ -20,7 +20,7 @@ class PagesView extends GetView<GetxController> {
             return currentPage == 0
                 ? const HomeView()
                 : currentPage == 1
-                    ? const ChekinView()
+                    ? const ScanQrView()
                     : currentPage == 2
                         ? const ProfileView()
                         : const SizedBox();
@@ -49,12 +49,12 @@ class PagesView extends GetView<GetxController> {
                   },
                   items: const <BottomNavigationBarItem>[
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
+                      icon: Icon(Icons.home_filled),
                       label: 'Home',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.chat_rounded),
-                      label: 'Chat',
+                      icon: Icon(Icons.qr_code_scanner_sharp),
+                      label: 'ScanQr',
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.badge_rounded),

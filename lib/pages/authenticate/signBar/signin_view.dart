@@ -24,7 +24,7 @@ class SigninView extends StatelessWidget {
                     children: <Widget>[
                       ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(PageRouter.profile);
+                            Get.toNamed(PageRouter.homeScreen);
                           },
                           child: const Text('Home Pages')),
                       ElevatedButton(
