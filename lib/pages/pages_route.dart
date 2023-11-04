@@ -1,26 +1,52 @@
-import 'package:get/get.dart';
+import 'package:profiling_app/pages/authenticate/authenticate_view.dart';
+import 'package:profiling_app/pages/chekin/chekin_view.dart';
 import 'package:profiling_app/pages/home/home_view.dart';
 import 'package:profiling_app/pages/pages_view.dart';
+import 'package:profiling_app/pages/profile/profile_view.dart';
+import 'package:profiling_app/splash_screen.dart';
+import 'package:get/get.dart';
 
 class PageRouter {
-  static const String page = '/';
+  static const String splashScreen = '/splash_screen';
+  static const String homeScreen = '/home_screen';
+  static const String authenticate = '/authenticate';
   static const String home = '/home';
-  static const String cart = '/cart';
-  static const String search = '/search';
+  static const String chekin = '/chekin';
   static const String profile = '/profile';
   static const String show = '/show';
   static String detail(id) => '/detail/$id';
-
   static final pages = [
     GetPage(
-      name: page,
-      page: () => const PageView(),
+      name: splashScreen,
+      page: () => const SplashScreen(),
+      transition: Transition.circularReveal,
     ),
     GetPage(
-        name: show,
-        page: () => const HomeView(),
-        transition: Transition.native,
-        transitionDuration: const Duration(milliseconds: 500)),
+      name: homeScreen,
+      page: () => const PagesView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: authenticate,
+      page: () => const AuthenticateView(),
+      transition: Transition.cupertinoDialog,
+    ),
+    GetPage(
+      name: profile,
+      page: () => const ProfileView(),
+      transition: Transition.fade,
+    ),
+    GetPage(
+      name: show,
+      page: () => const HomeView(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
+    GetPage(
+      name: chekin,
+      page: () => const ChekinView(),
+      transition: Transition.fade,
+    ),
     // GetPage(
     //     name: detail(':id'),
     //     page: () => const DetailView(),

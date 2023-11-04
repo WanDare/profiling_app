@@ -1,163 +1,134 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-// import 'package:pizza_food/xcore.dart';
-import 'package:lottie/lottie.dart';
 import 'package:profiling_app/core/styles/size.dart';
 import 'package:profiling_app/pages/home/home_controller.dart';
+import 'package:profiling_app/pages/shared/Calendar_widget.dart';
 import 'package:profiling_app/pages/home/home_widget.dart';
-import 'package:profiling_app/pages/pages_controller.dart';
-import 'package:profiling_app/pages/pages_route.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
-    return Obx(() {
-      if (HomeController.isLoading.isTrue) {
-        return Scaffold(
-          body: Center(
-            child: Lottie.network(
-              'https://assets5.lottiefiles.com/packages/lf20_kxsd2ytq.json',
-              width: 100,
-              height: 100,
-            ),
-          ),
-        );
-      }
-      return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const TitleWidget(),
-          leading: Builder(builder: (context) {
-            return IconButton(
-              splashRadius: kRadius * 3,
-              icon: const Icon(Icons.dehaze_rounded),
-              onPressed: () => PagesController.onOpenDrawer(),
-            );
-          }),
-          iconTheme: const IconThemeData(
-            color: Colors.black,
-          ),
-          actions: [
-            IconButton(
-              splashRadius: kRadius * 3,
-              icon: const Icon(Icons.notifications_none_rounded),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        drawer: const SidebarWidget(
-          profile:
-              'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            children: <Widget>[
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  aspectRatio: 2.0,
-                  viewportFraction: 1,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 4, 8, 53),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: false,
+            snap: false,
+            floating: false,
+            expandedHeight: 150.0,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/bluiebg.jpg'),
+                  fit: BoxFit.cover,
                 ),
-                items: controller.listSlide
-                    .map((item) => ClipRRect(
-                          borderRadius: BorderRadius.circular(kRadius * 2),
-                          child: Center(
-                            child: Image.network(item.image,
-                                fit: BoxFit.cover, width: 1000.0),
-                          ),
-                        ))
-                    .toList(),
               ),
-              SizedBox(height: Get.height * 0.01),
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    top: kPadding * 2,
-                    bottom: kPadding,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: const FlexibleSpaceBar(
+                title: Text(
+                  'Improve Our life \nWith Just a QR Code',
+                  style: TextStyle(color: Colors.white),
+                ),
+                titlePadding: EdgeInsets.only(left: 35),
+              ),
+            ),
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+                onPressed: () => Get.back(),
+              ),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: CalendarWeeks(),
+              ),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 16.0,
+            ),
+            sliver: SliverFixedExtentList(
+              itemExtent: 150.0,
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/travelerbg.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Container(
+                      height: 80,
+                      color: Colors.white38,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Popular",
-                            style: GoogleFonts.roboto(
-                              fontSize: 24,
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Icon(
+                            Icons.qr_code_rounded,
+                            color: Colors.orange,
                           ),
-                          ElevatedButton(
-                            onPressed: () => Get.toNamed(PageRouter.show),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(kRadius * 2),
-                              ),
-                            ),
-                            child: Text(
-                              "View All",
-                              style: GoogleFonts.roboto(
-                                color: Colors.grey,
-                                fontSize: 12.0,
-                              ),
+                          Text(
+                            'My CheckMe Card',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: Get.height * 0.01),
-                      Expanded(
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.65,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemCount: controller.listPizza.length <= 4
-                              ? controller.listPizza.length
-                              : controller.listPizza.length.clamp(6, 6),
-                          itemBuilder: (context, index) {
-                            final pizza = controller.listPizza[index];
-                            return InkWell(
-                              borderRadius: BorderRadius.circular(kRadius * 2),
-                              child: PizzaWidget(
-                                name: pizza.name,
-                                price: pizza.price,
-                                star: pizza.star,
-                                image: pizza.image,
-                              ),
-                              onTap: () {
-                                Get.toNamed(PageRouter.detail(pizza.id));
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                );
+              }, childCount: 1),
+            ),
           ),
-        ),
-      );
-    });
+          SliverPadding(
+            padding: const EdgeInsets.only(
+              right: kSpace * 2,
+              left: kSpace * 2,
+              bottom: kSpace * 10,
+            ),
+            sliver: SliverGrid.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 15,
+                crossAxisSpacing: 15,
+              ),
+              itemBuilder: (context, index) {
+                final item = AttendanceController.attendanceModelList[index];
+
+                return ItemWidget(
+                  icons: item.icon,
+                  title: item.title,
+                  description: item.description,
+                );
+              },
+              itemCount: AttendanceController.attendanceModelList.length,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
