@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:profiling_app/pages/pages_route.dart';
 import 'home_controller.dart';
 import 'package:profiling_app/core/styles/size.dart';
-import 'package:profiling_app/pages/profile/profile_view.dart';
 
 class ItemWidget extends GetView<AttendanceController> {
   const ItemWidget({

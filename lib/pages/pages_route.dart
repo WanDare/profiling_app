@@ -2,6 +2,7 @@ import 'package:profiling_app/pages/authenticate/authenticate_view.dart';
 import 'package:profiling_app/pages/home/home_view.dart';
 import 'package:profiling_app/pages/pages_view.dart';
 import 'package:profiling_app/pages/profile/profile_view.dart';
+import 'package:profiling_app/pages/scan_qr/ScannerQr/scanner_qr_view.dart';
 import 'package:profiling_app/pages/scan_qr/scan_qr_view.dart';
 import 'package:profiling_app/splash_screen.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class PageRouter {
   static const String authenticate = '/authenticate';
   static const String home = '/home';
   static const String scanQr = '/ScanQr';
+  static const String scannerQr = '/ScannerQr';
   static const String profile = '/profile';
   static const String show = '/show';
   static String detail(id) => '/detail/$id';
@@ -47,10 +49,11 @@ class PageRouter {
       page: () => const ScanQrView(),
       transition: Transition.fade,
     ),
-    // GetPage(
-    //     name: detail(':id'),
-    //     page: () => const DetailView(),
-    //     transition: Transition.native,
-    //     transitionDuration: const Duration(milliseconds: 500)),
+    GetPage(
+      name: scannerQr,
+      page: () => const ScannerQrView(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 200),
+    ),
   ];
 }

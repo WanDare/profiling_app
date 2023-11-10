@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'profile_controller.dart';
+import 'package:profiling_app/core/styles/padding.dart';
 import 'package:profiling_app/pages/pages_route.dart';
-import 'package:profiling_app/pages/scan_qr/scan_qr_view.dart';
 
-class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({super.key});
+class ProfileWidget extends GetView<ProfileController> {
+  @override
+  final ProfileController controller = Get.put(ProfileController());
+
+  ProfileWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class ProfileWidget extends StatelessWidget {
             alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
-                height: 240,
+                height: 250,
                 width: double.infinity,
                 child: Image.asset(
                   "assets/images/bluiebg.jpg",
@@ -44,54 +48,258 @@ class ProfileWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 35),
+          ListTile(
+            title: Center(
+              child: Text(
+                controller.user.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            subtitle: Center(
+              child: TextButton.icon(
+                onPressed: () {
+                  Get.toNamed(PageRouter.scanQr);
+                },
+                icon: const Icon(Icons.assignment_ind_rounded),
+                label: const Text("ID CARD"),
+              ),
+            ),
+          ),
           ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
             child: Container(
-              height: 505,
+              height: 445,
               clipBehavior: Clip.none,
-              color: Colors.white,
+              color: const Color.fromARGB(235, 255, 255, 255),
               child: Column(
                 children: [
-                  const ListTile(
-                    title: Center(
-                      child: Text(
-                        "Neth Wandara",
-                        style: TextStyle(
-                          color: Colors.orange,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
+                  const SizedBox(height: 15),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Container(
+                      width: kPadding * 45,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 15,
+                          horizontal: 15,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                              child: Text(
+                                "Personal Info",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: Text(
+                                "Position |   ${controller.user.position}",
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: Text(
+                                "Gender |   ${controller.user.gender}",
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: Text(
+                                "Email Address |   ${controller.user.email}",
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: Text(
+                                "Phone Number |   ${controller.user.phoneNumber}",
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    subtitle: Center(
-                      child: Text(
-                        "Position  |  Flutter Developer & React Developer",
-                        style: TextStyle(color: Colors.blue),
-                      ),
+                  ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 17),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(PageRouter.scanQr);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6.0),
+                              child: Container(
+                                height: kPadding * 4,
+                                color: Colors.white,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 10,
+                                    left: 10,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.language,
+                                            color: Colors.orange,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            'Language',
+                                            style: TextStyle(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.arrow_right,
+                                        color: Colors.grey,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(PageRouter.scanQr);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6.0),
+                              child: Container(
+                                height: kPadding * 4,
+                                color: Colors.white,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 10,
+                                    left: 10,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.settings,
+                                            color: Colors.orange,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            'Setting',
+                                            style: TextStyle(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.arrow_right,
+                                        color: Colors.grey,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(PageRouter.authenticate);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(6.0),
+                              child: Container(
+                                height: kPadding * 4,
+                                color: Colors.white,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(
+                                    right: 10,
+                                    left: 10,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.logout,
+                                            color: Colors.orange,
+                                          ),
+                                          SizedBox(width: 10),
+                                          Text(
+                                            'Logout',
+                                            style: TextStyle(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.arrow_right,
+                                        color: Colors.grey,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Description  | ",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      TextButton.icon(
-                        onPressed: () {
-                          Get.toNamed(PageRouter.scanQr);
-                        },
-                        icon: const Icon(Icons.assignment_ind_rounded),
-                        label: const Text("ID CARD"),
-                      ),
-                    ],
-                  ),
-                  Text("Feedback"),
-                  Text("Theme"),
                 ],
               ),
             ),

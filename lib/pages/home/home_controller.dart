@@ -30,46 +30,4 @@ class AttendanceController extends GetxController {
       description: 'People who report to you',
     ),
   ];
-
-  // Widget buildAttendanceItems() {
-  //   return ListView.builder(
-  //     itemCount: attendanceModelList.length,
-  //     itemBuilder: (context, index) {
-  //       AttendanceModel attendanceItemData = attendanceModelList[index];
-
-  //       return GestureDetector(
-  //         onTap: () {},
-  //         child: ClipRRect(
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               color: Colors.white,
-  //               borderRadius: BorderRadius.circular(25.0),
-  //             ),
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(15),
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   Icon(
-  //                     attendanceItemData.icon,
-  //                   ),
-  //                   Text(
-  //                     attendanceItemData.title ?? '',
-  //                   ),
-  //                   const SizedBox(
-  //                       height:
-  //                           kSpace), // Define kSpace or use a specific value
-  //                   Text(
-  //                     attendanceItemData.description ?? '',
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 }
