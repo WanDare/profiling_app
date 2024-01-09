@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:profiling_app/core/styles/padding.dart';
 import 'package:profiling_app/pages/pages_route.dart';
-import 'package:profiling_app/pages/scan_qr/ScannerQr/scanner_qr_view.dart';
 
 class ScanQrView extends StatelessWidget {
   const ScanQrView({super.key});

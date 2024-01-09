@@ -1,8 +1,7 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:profiling_app/core/styles/padding.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -13,16 +12,8 @@ class ScannerQrView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.orange,
-          size: kPadding * 4,
-        ),
-      ),
-      body: const QRViewExample(),
+    return const Scaffold(
+      body: QRViewExample(),
     );
   }
 }
@@ -38,7 +29,7 @@ class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  
+
   // @override
   // void reassemble() {
   //   super.reassemble();
@@ -51,10 +42,21 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.orange,
+            size: 30,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ),
+      backgroundColor: Colors.transparent,
       body: Column(
         children: <Widget>[
-          Expanded(flex: 4, child: _buildQrView(context)),
+          Expanded(flex: 5, child: _buildQrView(context)),
           Expanded(
             flex: 1,
             child: FittedBox(
@@ -66,27 +68,40 @@ class _QRViewExampleState extends State<QRViewExample> {
                     Text(
                         'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
-                    const Text('Scan a code'),
+                    const Text(
+                      'Scan a code',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(50.0),
+                          Radius.circular(30.0),
                         ),
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              await controller?.toggleFlash();
-                              setState(() {});
-                            },
-                            child: FutureBuilder(
-                              future: controller?.getFlashStatus(),
-                              builder: (context, snapshot) {
-                                return const Icon(Icons.flash_on);
-                                // : ${snapshot.data}
-                              },
-                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SizedBox(
+                            width: 45,
+                            height: 20,
+                            child: ElevatedButton(
+                                onPressed: () async {
+                                  await controller?.toggleFlash();
+                                  setState(() {});
+                                },
+                                child: FutureBuilder(
+                                  future: controller?.getFlashStatus(),
+                                  builder: (context, snapshot) {
+                                    return const Icon(
+                                      Icons.flash_on,
+                                      size: 15,
+                                    );
+                                    // : ${snapshot.data}
+                                  },
+                                )),
+                          ),
+                        ),
                       ),
                       // Container(
                       //   margin: const EdgeInsets.all(8),
