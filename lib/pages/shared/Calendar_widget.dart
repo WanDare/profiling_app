@@ -10,7 +10,7 @@ class CalendarWeeks extends StatelessWidget {
   Widget build(BuildContext context) {
     return CalendarWeek(
       backgroundColor: Colors.transparent,
-      height: 100,
+      height: 110,
       showMonth: false,
       todayDateStyle: const TextStyle(
         color: Colors.white,

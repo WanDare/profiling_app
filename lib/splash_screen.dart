@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:profiling_app/pages/pages_route.dart';
 
@@ -11,10 +9,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     loading();
     return const Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 4, 8, 53),
       body: Center(
           child: CircularProgressIndicator(
-        color: Colors.black,
+        color: Colors.orange,
       )),
     );
   }

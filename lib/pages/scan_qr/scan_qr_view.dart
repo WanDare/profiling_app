@@ -12,17 +12,16 @@ class ScanQrView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: Padding(
-          padding: const EdgeInsets.only(
-            left: 25,
-            top: 20,
-          ),
+          padding: const EdgeInsets.only(right: kPadding * 10),
           child: IconButton(
             icon: const Icon(
-              Icons.qr_code,
+              Icons.arrow_back_ios_new_rounded,
               color: Colors.orange,
-              size: 30,
+              size: kPadding * 5,
             ),
-            onPressed: () => Get.back(),
+            onPressed: () {
+              Get.toNamed(PageRouter.home);
+            },
           ),
         ),
       ),

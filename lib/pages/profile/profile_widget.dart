@@ -20,7 +20,7 @@ class ProfileWidget extends GetView<ProfileController> {
             alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
-                height: 250,
+                height: 230,
                 width: double.infinity,
                 child: Image.asset(
                   "assets/images/bluiebg.jpg",
