@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "84034444458",
+    "firebase_url": "https://profiling-app-1c8e2-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "profiling-app-1c8e2",
+    "storage_bucket": "profiling-app-1c8e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84034444458:android:40058b5b57a415f7f284d3",
+        "android_client_info": {
+          "package_name": "com.example.profiling_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuUzirRpaO2QMeUWsUReSY1iwo7NNUxEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

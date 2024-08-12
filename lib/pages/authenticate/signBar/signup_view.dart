@@ -26,7 +26,7 @@ class SignupView extends StatelessWidget {
                           onPressed: () {
                             Get.toNamed(PageRouter.homeScreen);
                           },
-                          child: const Text('Home Pages')),
+                          child: const Text('Register')),
                       ElevatedButton(
                         child: const Text('Close'),
                         onPressed: () => Navigator.pop(context),
